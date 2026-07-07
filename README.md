@@ -1,8 +1,8 @@
-# Flutter & Dart Master Assignments 🚀
+# Flutter & Dart Master Assignments 
 
 This repository contains a comprehensive collection of Flutter and Dart projects designed to master everything from basic UI and state management to asynchronous data fetching, game logic, and pure Dart fundamentals.
 
-## 📈 Progress Tracker
+## Progress Tracker
 
 ### UI & State Management (Flutter)
 - [ ] **Counter App:** Practice button interactions and basic state management.
@@ -24,31 +24,3 @@ This repository contains a comprehensive collection of Flutter and Dart projects
 - [ ] **Type Practice:** Replicating utility types and mastering Mixins, Generics, and Typedefs.
 - [ ] **Algorithmic Challenges:** Reversing strings, finding maximum numbers, and prime-checking.
 
-## 📂 Repository Structure
-
-```text
-📁 flutter_assignments/
- │
- ├─ 📄 .gitignore
- ├─ 📄 README.md
- │
- │  # --- UI & STATE MANAGEMENT ---
- ├─ 📁 counter_app/
- ├─ 📁 calculator_app/
- ├─ 📁 password_generator/
- │
- │  # --- DATA & APIS ---
- ├─ 📁 todo_list/
- ├─ 📁 weather_search_app/
- ├─ 📁 contact_management/
- │
- │  # --- GAMES & TIMERS ---
- ├─ 📁 quiz_app/
- ├─ 📁 pixel_art_maker/
- ├─ 📁 tic_tac_toe/
- ├─ 📁 pomodoro_timer/
- │
- │  # --- PURE LOGIC & DART FUNDAMENTALS ---
- ├─ 📁 type_practice/
- └─ 📁 algorithmic_challenges/
-```
