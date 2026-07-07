@@ -21,7 +21,6 @@ class CalculatorProvider extends ChangeNotifier {
   // ===========================================================================
 
   String _expression = '';
-
   String _result = '0';
 
   CalculatorMode _mode = CalculatorMode.scientific;
@@ -40,6 +39,10 @@ class CalculatorProvider extends ChangeNotifier {
 
   bool get isDegreeMode => _isDegreeMode;
 
+  bool get hasExpression => _expression.isNotEmpty;
+
+  bool get hasResult => _result != '0';
+
   // ===========================================================================
   // Expression
   // ===========================================================================
@@ -54,6 +57,58 @@ class CalculatorProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void appendOperator(String operator) {
+    if (_expression.isEmpty) return;
+
+    const operators = ['+', '-', '×', '÷', '%', '^'];
+
+    if (operators.any((op) => _expression.endsWith(op))) {
+      _expression =
+          _expression.substring(0, _expression.length - 1) + operator;
+    } else {
+      _expression += operator;
+    }
+
+    notifyListeners();
+  }
+
+  void appendDecimal() {
+    if (_expression.isEmpty) {
+      _expression = '0.';
+    } else if (!_expression.endsWith('.')) {
+      _expression += '.';
+    }
+
+    notifyListeners();
+  }
+
+  void appendBracket(bool left) {
+    _expression += left ? '(' : ')';
+    notifyListeners();
+  }
+
+  void appendFunction(String function) {
+    _expression += '$function(';
+    notifyListeners();
+  }
+
+  void appendConstant(String constant) {
+    _expression += constant;
+    notifyListeners();
+  }
+
+  void toggleSign() {
+    if (_expression.isEmpty) return;
+
+    if (_expression.startsWith('-')) {
+      _expression = _expression.substring(1);
+    } else {
+      _expression = '-$_expression';
+    }
+
+    notifyListeners();
+  }
+
   void backspace() {
     if (_expression.isEmpty) return;
 
@@ -61,9 +116,24 @@ class CalculatorProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void clearEntry() {
+    if (_expression.isEmpty) return;
+
+    _expression = '';
+    notifyListeners();
+  }
+
   void clear() {
     _expression = '';
     _result = '0';
+    notifyListeners();
+  }
+
+  void reset() {
+    _expression = '';
+    _result = '0';
+    _mode = CalculatorMode.scientific;
+    _isDegreeMode = true;
     notifyListeners();
   }
 
@@ -128,8 +198,7 @@ class CalculatorProvider extends ChangeNotifier {
   // Calculator Engine
   // ===========================================================================
 
-  /// The expression parser and scientific engine
-  /// will be implemented in the Calculator Engine phase.
+  /// This method will delegate to CalculatorEngine in the next phase.
   void calculate() {
     notifyListeners();
   }
