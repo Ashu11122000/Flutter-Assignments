@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../providers/theme_provider.dart';
 import 'routes.dart';
 import 'themes/app_theme.dart';
 
@@ -8,16 +10,20 @@ class ScientificCalculatorApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Scientific Calculator',
-      debugShowCheckedModeBanner: false,
+    return Consumer<ThemeProvider>(
+      builder: (context, themeProvider, child) {
+        return MaterialApp(
+          title: 'Scientific Calculator',
+          debugShowCheckedModeBanner: false,
 
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.light,
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          themeMode: themeProvider.themeMode,
 
-      initialRoute: AppRoutes.calculator,
-      onGenerateRoute: AppRoutes.generateRoute,
+          initialRoute: AppRoutes.calculator,
+          onGenerateRoute: AppRoutes.generateRoute,
+        );
+      },
     );
   }
 }
